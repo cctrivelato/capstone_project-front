@@ -3,27 +3,59 @@
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Cottonwood Animal Clinic Home</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>This is The Smart Factory Home Page</h1>
-    </header>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a id="dash">Dashboards</a>
-        <a href="#">Contact</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>
+                <a href="#">About</a>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Team</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Dashboards</a>
+                <ul>
+                    <li><a href="welding_home.html">Welding Lab Menu</a></li>
+                    <li><a href="robotics_home.html">Robotics Lab Menu</a></li>
+                    <li><a href="cnc_home.html">CNC Lab Menu</a></li>
+                    <li><a href="m127_home.html">M127 Lab Menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </nav>
     <main>
         <div>
-            <button>Login</button>
-            <button>SignUp</button>
+            <img src="css/logo_transparent.png" alt="WSU Tech - Smart Factory" style="max-width: 100%; max-height: 100%" alt="WSU Tech SF Logo">
         </div>
     </main>
     <footer>
-        &copy; 2025 Process Update by Caique Trivelato. All Rights Reserved.
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Menu Options</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Dashboard Menu</h3>
+                <ul>
+                    <li><a href="welding_home.html">Welding Lab Menu</a></li>
+                    <li><a href="robotics_home.html">Robotics Lab Menu</a></li>
+                    <li><a href="cnc_home.html">CNC Lab Menu</a></li>
+                    <li><a href="m127_home.html">M127 Lab Menu</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">&copy; 2025 Cottonwood Animal Clinic. All Rights Reserved.</div>
     </footer>
     <script src="js/script.js"></script>
 </body>

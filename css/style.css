@@ -37,13 +37,14 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 10px 100px 10px 100px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Hover Effect */
 nav a:hover {
+    padding: 10px 100px 10px 100px;
     background-color: white;
     color: #333;
 }
@@ -54,7 +55,7 @@ nav li ul {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #591492be;
+    background: #591492;
     list-style: none;
     padding: 0;
     border-radius: 5px;

@@ -48,16 +48,18 @@ nav a:hover {
     color: #333;
 }
 
-/* Dropdown Menu */
 nav li ul {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    background: #591492be; /* Slightly darker yellow */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #591492be;
     list-style: none;
     padding: 0;
     border-radius: 5px;
+    min-width: 150px;
+    text-align: center;
 }
 
 /* Dropdown Items */

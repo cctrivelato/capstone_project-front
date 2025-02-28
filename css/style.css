@@ -45,8 +45,9 @@ nav a {
 /* Hover Effect */
 nav a:hover {
     padding: 10px 100px 10px 100px;
-    background-color: white;
-    color: #333;
+    margin-bottom: 10px;
+    color: white;
+    box-shadow: 5px 2px 0px rgb(70, 69, 69);
 }
 
 nav li ul {
@@ -73,6 +74,8 @@ nav li ul li {
 nav li:hover ul {
     display: block;
     width: 400px;
+    background-color: #390f5c;
+    color: white;
 }
 
 /* Improved Background Styling */
@@ -224,6 +227,11 @@ footer{
 /* Hover Effect */
 .center-container:hover .option-button {
     opacity: 1;
+}
+
+.option-button:hover {
+    background-color: white;
+    color: black;
 }
 
 .center-container:hover .left {

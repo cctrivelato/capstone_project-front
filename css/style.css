@@ -10,7 +10,7 @@ nav {
     width: 100%;
     text-align: center;
     justify-content: space-around;
-    background-color: #591492;
+    background-color: #390f5c;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     padding: 10px 0;
@@ -167,4 +167,69 @@ footer{
     font-size: 0.9em;
     color: #591492;
     margin-top: auto; /* Pushes it to the bottom */
+}
+
+.center-container {
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.center-logo {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.options {
+    position: relative;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.option-button {
+    padding: 15px 100px ;
+    width: 100px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #390f5c;
+    border: none;
+    box-shadow: 0px 3px 0px rgb(145, 145, 145);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-160%);
+    opacity: 0;
+    z-index: -100;
+}
+
+.left {
+    left: -100px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.right {
+    right: -100px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+/* Hover Effect */
+.center-container:hover .option-button {
+    opacity: 1;
+}
+
+.center-container:hover .left {
+    transform: translateX(-201px) translateY(-160%);
+}
+
+.center-container:hover .right {
+    transform: translateX(201px) translateY(-160%);
 }

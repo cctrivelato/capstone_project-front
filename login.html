@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cottonwood Animal Clinic - Home</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_log_and_sign.css">
 </head>
 <body>
     <nav>
@@ -36,10 +36,31 @@
                 <img src="css/logo.jpg" style="max-width: 100%; max-height: 100%" alt="WSU Tech SF Logo" class="center-logo">
             </div>
 
-            <div class="options">
-                <a href="login.html" class="option-button left">Log In</a>
-                <a href="signup.html" class="option-button right">Sign Up</a>
-            </div>
+            <div class="signup-container">
+                <h2>Sign Up</h2>
+                <form>
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+        </div>
+    </main>
         </div>
     </main>
     <footer>

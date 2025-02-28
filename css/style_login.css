@@ -80,7 +80,7 @@ nav li:hover ul {
 
 /* Improved Background Styling */
 main {
-    background: url("front-desk.jpg") no-repeat center center;
+    background: url("images/front-desk.jpg") no-repeat center center;
     background-size: cover;
     position: relative;
     height: 100vh; /* Adjusted for full viewport height */
@@ -195,58 +195,8 @@ footer{
     align-items: center;
     justify-content: center;
     position: relative;
-    transform: translateX(-500px);
+    transform: translateX(-400px);
     z-index: 200;
-}
-
-/* Buttons */
-.options {
-    position: relative;
-    margin-top: 0px;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    z-index: -1;
-}
-
-.option-button {
-    padding: 15px 100px ;
-    width: 100px;
-    font-size: 18px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #390f5c;
-    background-color: white;
-    border: none;
-    box-shadow: 0px 3px 0px rgb(145, 145, 145);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-320%);
-    opacity: 0;
-    z-index: -100;
-}
-
-.left {
-    left: -100px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-}
-
-.right {
-    right: -100px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
-
-/* Hover Effect */
-.center-container:hover .option-button {
-    opacity: 1;
-}
-
-.option-button:hover {
-    background-color: #390f5c;
-    color: white;
 }
 
 .center-container:hover .left {
@@ -258,7 +208,7 @@ footer{
 }
 
 .signup-container {
-    max-width: 800px;
+    width: 300px;
     margin: 50px auto;
     padding: 50px;
     background: white;
@@ -271,7 +221,14 @@ footer{
     flex-direction: column;
 }
 
+.signup-container h2 {
+    color:#000000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 .signup-container label {
+    color:#000000;
     font-weight: bold;
     margin-top: 10px;
 }

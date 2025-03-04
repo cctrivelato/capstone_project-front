@@ -177,7 +177,7 @@ footer{
     flex-direction: row;
     position: relative;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .center-logo {
@@ -207,7 +207,7 @@ footer{
     transform: translateX(190px) translateY(-320%);
 }
 
-.signup-container {
+.login-container {
     width: 300px;
     margin: 50px auto;
     padding: 50px;
@@ -216,31 +216,31 @@ footer{
     border-radius: 10px;
 }
 
-.signup-container form {
+.login-container form {
     display: flex;
     flex-direction: column;
 }
 
-.signup-container h2 {
+.login-container h2 {
     color:#000000;
     font-weight: bold;
     margin-top: 10px;
 }
 
-.signup-container label {
+.login-container label {
     color:#000000;
     font-weight: bold;
     margin-top: 10px;
 }
 
-.signup-container input {
+.login-container input {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.signup-container button {
+.login-container button {
     margin-top: 15px;
     padding: 10px;
     background: #390f5c;
@@ -250,6 +250,41 @@ footer{
     cursor: pointer;
 }
 
-.signup-container button:hover {
+.login-container button:hover {
     background: #591492;
+}
+
+.login-type {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.login-type button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.staff {
+    background-color: rgba(0, 0, 0, 0.3); /* Shadowy appearance */
+    color: white;
+}
+
+.customer {
+    background-color: #007BFF; /* Solid default selection */
+    color: white;
+}
+
+.active {
+    background-color: #007BFF; /* Solid when selected */
+    color: white;
+}
+
+.inactive {
+    background-color: rgba(0, 0, 0, 0.3); /* Shadowy when unselected */
 }

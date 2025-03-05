@@ -208,9 +208,9 @@ footer{
 }
 
 .login-container {
-    width: 300px;
+    width: 500px;
     margin: 50px auto;
-    padding: 50px;
+    padding: 0 0 50px 0;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -219,6 +219,7 @@ footer{
 .login-container form {
     display: flex;
     flex-direction: column;
+    padding: 20px 50px 50px 50px;
 }
 
 .login-container h2 {
@@ -241,7 +242,6 @@ footer{
 }
 
 .login-container button {
-    margin-top: 15px;
     padding: 10px;
     background: #390f5c;
     color: white;
@@ -250,41 +250,51 @@ footer{
     cursor: pointer;
 }
 
+.form button {
+    border-radius: 5px;
+    margin-top: 25px;
+    width: 140px;
+    align-self: center;
+}
+
 .login-container button:hover {
-    background: #591492;
+    background: #925aa8;
+    color: white;
 }
 
 .login-type {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 0px;
     margin-bottom: 20px;
+    background-color: #d7c9e28f;
+    color: #390f5c;
+    border-radius: 8px;
 }
 
 .login-type button {
-    padding: 10px 20px;
+    width: 400px;
+    height: 80px;
     font-size: 1.2em;
-    border: none;
     cursor: pointer;
-    border-radius: 8px;
     transition: 0.3s;
 }
 
-.staff {
-    background-color: rgba(0, 0, 0, 0.3); /* Shadowy appearance */
+.staff.active, .customer.active {
+    background-color: #390f5c;
     color: white;
 }
 
-.customer {
-    background-color: #007BFF; /* Solid default selection */
-    color: white;
+.staff.active {
+    box-shadow: 2px 2px 4px #390f5c;
 }
 
-.active {
-    background-color: #007BFF; /* Solid when selected */
-    color: white;
+.customer.active {
+    left: -2px;
+    box-shadow: 2px 2px 5px #390f5c;
 }
 
-.inactive {
-    background-color: rgba(0, 0, 0, 0.3); /* Shadowy when unselected */
+.staff.inactive, .customer.inactive {
+    background-color: #d7c9e28f;
+    color: #390f5c;
+    box-shadow: 0px 1px 0 #625d66;
 }

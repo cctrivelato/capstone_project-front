@@ -258,3 +258,40 @@ footer{
 .signup-container button:hover {
     background: #591492;
 }
+
+.login-type {
+    display: flex;
+    gap: 0px;
+    margin-bottom: 20px;
+    background-color: #d7c9e28f;
+    color: #390f5c;
+    border-radius: 8px;
+}
+
+.login-type button {
+    width: 400px;
+    height: 80px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.staff.active, .customer.active {
+    background-color: #390f5c;
+    color: white;
+}
+
+.staff.active {
+    box-shadow: 2px 2px 4px #390f5c;
+}
+
+.customer.active {
+    left: -2px;
+    box-shadow: 2px 2px 5px #390f5c;
+}
+
+.staff.inactive, .customer.inactive {
+    background-color: #d7c9e28f;
+    color: #390f5c;
+    box-shadow: 0px 1px 0 #625d66;
+}

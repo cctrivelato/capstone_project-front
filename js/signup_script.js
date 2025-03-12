@@ -71,7 +71,13 @@ function toJson(fname, lname, phone, e_add, passw, id, url){
 
         return res.json();
     })
-    .then(data => console.log("Success:", data))
+    .then(data => {
+        document.getElementById("message-text").innerText = data.message;
+        document.getElementById("message-box").style.display = "block";
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 3000);
+    })
     .catch(error => {
         console.log(error);
     });

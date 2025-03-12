@@ -80,7 +80,7 @@ nav li:hover ul {
 
 /* Improved Background Styling */
 main {
-    background: url("images/front-desk.jpg") no-repeat center center;
+    background: url("images/animal_back.jpg") no-repeat center center;
     background-size: cover;
     position: relative;
     height: 100vh; /* Adjusted for full viewport height */

@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Default selection
     setActive(customerBtn, staffBtn, true);
+
     staffBtn.addEventListener("click", function () {
         setActive(staffBtn, customerBtn, false);
     });
@@ -27,19 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
     let passw = document.getElementById('password').value;
+    let ID = document.getElementById('ID').value;
 
-    if (window.customer_selected === false){
-        let staffID = document.getElementById('ID').value;
-        console.log(staffID);
+    let url = customer_selected
+        ? 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem'
+        : 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem';
 
-        toJson(passw, staffID, 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem');
-    } 
-    else {
-        let customerID = document.getElementById('ID').value;
-        console.log(customerID);
+    console.log("Selected Type:", customer_selected ? "Customer" : "Staff");
+    console.log("ID:", ID);
 
-        toJson(passw, customerID, 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem');
-    }
+    toJson(passw, ID, url);
 });
 
 function toJson(passw, id, url){
@@ -47,6 +45,8 @@ function toJson(passw, id, url){
         pwd: passw,
         ID: id
     };
+
+    console.log("Sending Data:", newUser);
 
     fetch(url, {
         method: 'POST',
@@ -57,14 +57,15 @@ function toJson(passw, id, url){
     })
     .then(response => response.json())
     .then(data => {
+        console.log("Response Data:", data);
         if (data.success) {
             localStorage.setItem('jwt_token', data.token);
             window.location.href = data.redirect_url;  
         } else {
-            alert(data.message); 
+            alert(data.message);
         }
     })
     .catch(error => {
-        console.log(error);
+        console.error("Fetch Error:", error);
     });
 }

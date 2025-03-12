@@ -58,6 +58,7 @@ function toJson(passw, id, url){
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            localStorage.setItem('jwt_token', data.token);
             window.location.href = data.redirect_url;  
         } else {
             alert(data.message); 

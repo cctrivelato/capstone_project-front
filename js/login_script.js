@@ -29,15 +29,16 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
     let passw = document.getElementById('password').value;
     let ID = document.getElementById('ID').value;
+    let stringID = toString(ID);
 
     let url = customer_selected
         ? 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem'
         : 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem';
 
     console.log("Selected Type:", customer_selected ? "Customer" : "Staff");
-    console.log("ID:", ID);
+    console.log("ID:", stringID);
 
-    toJson(passw, ID, url);
+    toJson(passw, stringID, url);
 });
 
 function toJson(passw, id, url){

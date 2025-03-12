@@ -1,3 +1,5 @@
+let customer_selected = false;
+
 document.addEventListener("DOMContentLoaded", function () {
     const staffBtn = document.querySelector(".staff");
     const customerBtn = document.querySelector(".customer");
@@ -24,35 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    let fname = document.getElementById('first-name').value;
-    let lname = document.getElementById('last-name').value;
-    let phone = document.getElementById('phone').value;
-    let e_add = document.getElementById('email').value;
     let passw = document.getElementById('password').value;
-    let randomnum = Math.floor(Math.random() * 90000) + 10000;
 
     if (window.customer_selected === false){
-        let staffID = randomnum.toString();
-        let url = 'https://n0etr3vh16.execute-api.us-east-2.amazonaws.com/default/StaffPutItem';
+        let staffID = document.getElementById('ID').value;
         console.log(staffID);
 
-        toJson(fname, lname, phone, e_add, passw, staffID, url);
+        toJson(passw, staffID, 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem');
     } 
     else {
-        let customerID = randomnum.toString();
-        let url = 'https://gwgd0snx2l.execute-api.us-east-2.amazonaws.com/default/CustomerPutItem';
+        let customerID = document.getElementById('ID').value;
         console.log(customerID);
 
-        toJson(fname, lname, phone, e_add, passw, customerID, url);
+        toJson(passw, customerID, 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem');
     }
 });
 
-function toJson(fname, lname, phone, e_add, passw, id, url){
+function toJson(passw, id, url){
     newUser = {
-        firstname: fname,
-        lastname: lname,
-        phoneNum: phone,
-        email_add: e_add,
         pwd: passw,
         ID: id
     };
@@ -63,15 +54,15 @@ function toJson(fname, lname, phone, e_add, passw, id, url){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newUser)
-    }).then(res => {
-        if (!res.ok) {
-            console.log('Problem');
-            return;
-        }
-
-        return res.json();
     })
-    .then(data => console.log("Success:", data))
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect_url;  
+        } else {
+            alert(data.message); 
+        }
+    })
     .catch(error => {
         console.log(error);
     });

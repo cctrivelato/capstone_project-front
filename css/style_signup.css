@@ -208,11 +208,10 @@ footer{
 }
 
 .signup-container {
-    width: 800px;
+    width: 500px;
     margin: 50px auto;
-    padding: 50px;
+    padding: 0 0 50px 0;
     background: white;
-    align-items: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
@@ -220,6 +219,7 @@ footer{
 .signup-container form {
     display: flex;
     flex-direction: column;
+    padding: 20px 50px 50px 50px;
 }
 
 .signup-container h2 {
@@ -235,8 +235,6 @@ footer{
 }
 
 .signup-container input {
-    align-self: center;
-    width: 400px;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -244,9 +242,6 @@ footer{
 }
 
 .signup-container button {
-    align-self: center;
-    width: 400px;
-    margin-top: 15px;
     padding: 10px;
     background: #390f5c;
     color: white;
@@ -255,8 +250,16 @@ footer{
     cursor: pointer;
 }
 
+.form button {
+    border-radius: 5px;
+    margin-top: 25px;
+    width: 140px;
+    align-self: center;
+}
+
 .signup-container button:hover {
-    background: #591492;
+    background: #925aa8;
+    color: white;
 }
 
 .login-type {

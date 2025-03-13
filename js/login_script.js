@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
     let passw = document.getElementById('password').value;
-    let ID = document.getElementById('ID').value;
-    let stringID = toString(ID);
+    let id = document.getElementById('ID').value;
+    let stringID = id.toString();
 
     let url = customer_selected
         ? 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem'

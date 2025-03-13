@@ -17,8 +17,11 @@
         // Function to access the homepage using the token
         async function accessHomePage() {
             const token = getToken();
+
+            console.log(token);
+
             try {
-                const response = await fetch('https://py6kinrit0.execute-api.us-east-2.amazonaws.com/default/CheckCustomerLogin', {
+                const response = await fetch('https://94enp1fis9.execute-api.us-east-1.amazonaws.com/default/accessCust', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

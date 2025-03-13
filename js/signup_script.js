@@ -33,14 +33,14 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     if (window.customer_selected === false){
         let staffID = randomnum.toString();
-        let url = 'https://n0etr3vh16.execute-api.us-east-2.amazonaws.com/default/StaffPutItem';
+        let url = 'https://vsgec6b4dg.execute-api.us-east-1.amazonaws.com/default/StaffPutIt';
         console.log(staffID);
 
         toJson(fname, lname, phone, e_add, passw, staffID, url);
     } 
     else {
         let customerID = randomnum.toString();
-        let url = 'https://gwgd0snx2l.execute-api.us-east-2.amazonaws.com/default/CustomerPutItem';
+        let url = 'https://aoqf65lohd.execute-api.us-east-1.amazonaws.com/default/CustPutIt';
         console.log(customerID);
 
         toJson(fname, lname, phone, e_add, passw, customerID, url);

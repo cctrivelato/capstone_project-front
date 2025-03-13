@@ -29,22 +29,24 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
     let passw = document.getElementById('password').value;
     let id = document.getElementById('ID').value;
-    let stringID = id.toString();
 
-    let url = customer_selected
-        ? 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem'
-        : 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem';
-
-    console.log("Selected Type:", customer_selected ? "Customer" : "Staff");
-    console.log("ID:", stringID);
-
-    toJson(passw, stringID, url);
+    if (window.customer_selected === false){
+        let url = 'https://2tx0i6zwla.execute-api.us-east-1.amazonaws.com/default/StaffGetIt';
+        console.log("Selected Type:", window.customer_selected ? "Customer" : "Staff");
+        console.log("ID:", id);
+        toJson(passw, id, url);
+    } else {
+        let url = 'https://i183horz37.execute-api.us-east-1.amazonaws.com/default/CustGetIt';
+        console.log("Selected Type:", window.customer_selected ? "Customer" : "Staff");
+        console.log("ID:", id);
+        toJson(passw, id, url);
+    }
 });
 
 function toJson(passw, id, url){
     newUser = {
-        pwd: passw,
-        ID: id
+        ID: id,
+        pwd: passw
     };
 
     console.log("Sending Data:", newUser);
@@ -60,7 +62,9 @@ function toJson(passw, id, url){
     .then(data => {
         console.log("Response Data:", data);
         if (data.success) {
-            localStorage.setItem('jwt_token', data.token);
+            if (data.token) {
+                localStorage.setItem('jwt_token', data.token);
+            }
             window.location.href = data.redirect_url;  
         } else {
             alert(data.message);

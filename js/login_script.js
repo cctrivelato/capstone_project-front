@@ -32,8 +32,8 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     let stringID = id.toString();
 
     let url = customer_selected
-        ? 'https://70wqhxka6b.execute-api.us-east-2.amazonaws.com/default/CustomerGetItem'
-        : 'https://nbvjzlfi5h.execute-api.us-east-2.amazonaws.com/default/StaffGetItem';
+        ? 'https://i183horz37.execute-api.us-east-1.amazonaws.com/default/CustGetIt'
+        : 'https://2tx0i6zwla.execute-api.us-east-1.amazonaws.com/default/StaffGetIt';
 
     console.log("Selected Type:", customer_selected ? "Customer" : "Staff");
     console.log("ID:", stringID);

@@ -67,7 +67,7 @@
                 const data = await response.json();
                 if (response.status === 200) {
                     document.getElementById('message').innerText = data.message;
-                    window.location.href = '/customer_index.html';  
+                    window.location.href = 'customer_index.html';  
                 } else {
                     document.getElementById('message').innerText = data.message;
                     document.getElementById('back-login').innerText = '>  Back to Login';

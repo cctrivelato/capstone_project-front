@@ -30,12 +30,15 @@
                 const data = await response.json();
                 if (response.status === 200) {
                     document.getElementById('message').innerText = data.message;
+                    window.location.href = '/staff_index.html';  
                 } else {
                     document.getElementById('message').innerText = data.message;
+                    document.getElementById('back-login').innerText = 'Back to Login';
                 }
             } catch (error) {
                 console.error('Error:', error);
-                document.getElementById('message').innerText = 'Failed to fetch home page.';
+                document.getElementById('message').innerText = 'Failed to fetch user home page.';
+                window.location.href = '/login.html'; 
             }
         }
 
@@ -48,5 +51,6 @@
 <body>
     <h1>Home Page</h1>
     <p id="message">Loading...</p>
+    <a href="login.html" id="back-login"></a>
 </body>
 </html>

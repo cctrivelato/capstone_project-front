@@ -59,21 +59,10 @@
 
         function getToken() {
             const token = localStorage.getItem('jwt_token');
-            if (!token || isTokenExpired(token)) {
+            if (!token) {
                 logout(); // Logout if token is missing or expired
             }
             return token;
-        }
-
-        // Function to decode JWT and check expiration
-        function isTokenExpired(token) {
-            try {
-                const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT payload
-                const expiry = payload.exp * 1000; // Convert to milliseconds
-                return Date.now() >= expiry;
-            } catch (e) {
-                return true; // Treat invalid tokens as expired
-            }
         }
 
         // Function to validate the token with backend
@@ -89,7 +78,7 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    document.getElementById('message').innerText = data.message;
+                    document.getElementById('user-name').innerText = data.;
                     window.location.href = 'customer_index.html';  
                 } else {
                     logout(); // Logout if backend rejects the token

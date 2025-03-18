@@ -17,22 +17,12 @@
             padding: 20px;
             text-align: center;
         }
-
-        .progress {
-            margin-top: 200px;
-            text-align: center;
-        }
-
-        .progress button {
-            margin-top: 40px;
-        }
-
         .progress-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 600px;
-            margin: auto;
+            margin: 100px auto;
             position: relative;
         }
         .progress-line {
@@ -44,7 +34,7 @@
             background: lightgray;
             z-index: -1;
         }
-        .progress {
+        #progress-bar {
             height: 5px;
             background: green;
             width: 0%;
@@ -59,44 +49,35 @@
         }
         .step img {
             width: 100%;
-            height: auto;
             opacity: 0.5;
             transition: opacity 0.3s ease;
         }
-
         .step.active img {
             opacity: 1;
         }
-        
-        /* Circular container for the dog image */
         .dog-container {
             position: absolute;
             top: 50%;
-            left: 0;
-            width: 50px; /* Circle diameter */
-            height: 50px; /* Circle diameter */
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background-color: lightblue; /* Circle background color */
+            background-color: lightblue;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Hide the overflow of the image */
-            transition: left 0.5s ease;
+            overflow: hidden;
+            transition: transform 0.5s ease;
             z-index: 1;
         }
-
-        /* Make the image fill the circle */
         .dog-container img {
-            width: 100%; /* Image takes up the full width of the circle */
-            height: 100%; /* Image takes up the full height of the circle */
-            object-fit: cover; /* Ensures the image fully covers the circle without stretching */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
         .content {
+            text-align: center;
             padding: 20px;
-        }
-        .user-info {
-            margin-bottom: 20px;
         }
         .logout-button {
             padding: 10px 20px;
@@ -105,9 +86,10 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            margin-top: 20px;
         }
         .logout-button:hover {
-            background-color: #390f5c;
+            background-color: #2b0844;
         }
     </style>
 </head>
@@ -117,19 +99,17 @@
     </header>
     <div class="content">
         <div class="user-info">
-            <h2>Welcome,</h2>
-            <h2 id="user-name"></h2>
+            <h2>Welcome, <span id="user-name">User</span></h2>
         </div>
 
-        <div id="progress">
+        <div>
             <h2>Delivery Progress</h2>
             <div class="progress-container">
                 <div class="progress-line">
-                    <div class="progress" id="progress-bar"></div>
+                    <div id="progress-bar"></div>
                 </div>
-                <!-- Circular container for the dog image -->
                 <div class="dog-container" id="dog-container">
-                    <img src="images/dog.png" alt="Dog" id="dog">
+                    <img src="images/dog.png" alt="Dog">
                 </div>
                 <div class="step active"><img src="step1.png" alt="Step 1"></div>
                 <div class="step"><img src="step2.png" alt="Step 2"></div>
@@ -137,41 +117,29 @@
                 <div class="step"><img src="step4.png" alt="Step 4"></div>
                 <div class="step"><img src="step5.png" alt="Step 5"></div>
             </div>
-    
             <button onclick="nextStep()">Next Step</button>
         </div>
 
-        <div>
-            <button class="logout-button" onclick="logout()">Logout</button>
-        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script>
-        function logout() {
-            alert("Logging out...");
-            localStorage.removeItem('jwt_token');
-            window.location.href = '/index.html';
-        }
-
         let currentStep = 1;
         function nextStep() {
             if (currentStep < 5) {
                 currentStep++;
                 document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
                 document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
-                document.getElementById('dog-container').style.left = ((currentStep - 1) / 4) * 100 + '%';
+                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
             }
         }
 
-        function getToken() {
-            const token = localStorage.getItem('jwt_token');
-            if (!token) {
-                logout(); // Logout if token is missing or expired
-            }
-            return token;
+        function logout() {
+            alert("Logging out...");
+            localStorage.clear();
+            window.location.href = '/index.html';
         }
 
-        // Function to validate the token with backend
         async function validateToken(token) {
             try {
                 const response = await fetch('https://94enp1fis9.execute-api.us-east-1.amazonaws.com/default/accessCust', {
@@ -185,10 +153,8 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
-                    document.getElementById('message').innerText = data.message;
-                    window.location.href = 'customer_index.html';  
                 } else {
-                    logout(); // Logout if backend rejects the token
+                    logout();
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -196,10 +162,11 @@
             }
         }
 
-        // Run on page load
         window.onload = function () {
-            const token = getToken();
-            if (token) {
+            const token = localStorage.getItem('jwt_token');
+            if (!token) {
+                logout();
+            } else {
                 validateToken(token);
             }
         };

@@ -17,6 +17,81 @@
             padding: 20px;
             text-align: center;
         }
+
+        .progress {
+            margin-top: 200px;
+            text-align: center;
+        }
+
+        .progress button {
+            margin-top: 40px;
+        }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 600px;
+            margin: auto;
+            position: relative;
+        }
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: lightgray;
+            z-index: -1;
+        }
+        .progress {
+            height: 5px;
+            background: green;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .step {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step img {
+            width: 100%;
+            height: auto;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .step.active img {
+            opacity: 1;
+        }
+        
+        /* Circular container for the dog image */
+        .dog-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 50px; /* Circle diameter */
+            height: 50px; /* Circle diameter */
+            border-radius: 50%;
+            background-color: lightblue; /* Circle background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide the overflow of the image */
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        /* Make the image fill the circle */
+        .dog-container img {
+            width: 100%; /* Image takes up the full width of the circle */
+            height: 100%; /* Image takes up the full height of the circle */
+            object-fit: cover; /* Ensures the image fully covers the circle without stretching */
+        }
+
         .content {
             padding: 20px;
         }
@@ -45,6 +120,27 @@
             <h2>Welcome,</h2>
             <h2 id="user-name"></h2>
         </div>
+
+        <div id="progress">
+            <h2>Delivery Progress</h2>
+            <div class="progress-container">
+                <div class="progress-line">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <!-- Circular container for the dog image -->
+                <div class="dog-container" id="dog-container">
+                    <img src="images/dog.png" alt="Dog" id="dog">
+                </div>
+                <div class="step active"><img src="step1.png" alt="Step 1"></div>
+                <div class="step"><img src="step2.png" alt="Step 2"></div>
+                <div class="step"><img src="step3.png" alt="Step 3"></div>
+                <div class="step"><img src="step4.png" alt="Step 4"></div>
+                <div class="step"><img src="step5.png" alt="Step 5"></div>
+            </div>
+    
+            <button onclick="nextStep()">Next Step</button>
+        </div>
+
         <div>
             <button class="logout-button" onclick="logout()">Logout</button>
         </div>
@@ -55,6 +151,16 @@
             alert("Logging out...");
             localStorage.removeItem('jwt_token');
             window.location.href = '/index.html';
+        }
+
+        let currentStep = 1;
+        function nextStep() {
+            if (currentStep < 5) {
+                currentStep++;
+                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
+                document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
+                document.getElementById('dog-container').style.left = ((currentStep - 1) / 4) * 100 + '%';
+            }
         }
 
         function getToken() {
@@ -79,6 +185,7 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
+                    document.getElementById('message').innerText = data.message;
                     window.location.href = 'customer_index.html';  
                 } else {
                     logout(); // Logout if backend rejects the token

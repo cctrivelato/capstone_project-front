@@ -78,7 +78,7 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    document.getElementById('user-name').innerText = data.;
+                    document.getElementById('user-name').innerText = data.message;
                     window.location.href = 'customer_index.html';  
                 } else {
                     logout(); // Logout if backend rejects the token

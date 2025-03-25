@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Home Page</title>
+    <title>Customer Home Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,11 +17,67 @@
             padding: 20px;
             text-align: center;
         }
-        .content {
-            padding: 20px;
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 600px;
+            margin: 100px auto;
+            position: relative;
         }
-        .user-info {
-            margin-bottom: 20px;
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: lightgray;
+            z-index: -1;
+        }
+        #progress-bar {
+            height: 5px;
+            background: green;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .step {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step img {
+            width: 100%;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+        .step.active img {
+            opacity: 1;
+        }
+        .dog-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+        .dog-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content {
+            text-align: center;
+            padding: 20px;
         }
         .logout-button {
             padding: 10px 20px;
@@ -30,9 +86,10 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            margin-top: 20px;
         }
         .logout-button:hover {
-            background-color: #390f5c;
+            background-color: #2b0844;
         }
     </style>
 </head>
@@ -42,19 +99,82 @@
     </header>
     <div class="content">
         <div class="user-info">
-            <h2>Welcome,</h2>
-            <h2 id="user-name"></h2>
+            <h2>Welcome, <span id="user-name">User</span></h2>
         </div>
+
+        <ul>
+            <li><button></button></li>
+            <li><button onclick="service()"></button></li>
+        </ul>
+
         <div>
-            <button class="logout-button" onclick="logout()">Logout</button>
+            <h2>Delivery Progress</h2>
+            <div class="progress-container">
+                <div class="progress-line">
+                    <div id="progress-bar"></div>
+                </div>
+                <div class="dog-container" id="dog-container">
+                    <img src="images/dog.png" alt="Dog">
+                </div>
+                <div class="step active"><img src="step1.png" alt="Step 1"></div>
+                <div class="step"><img src="step2.png" alt="Step 2"></div>
+                <div class="step"><img src="step3.png" alt="Step 3"></div>
+                <div class="step"><img src="step4.png" alt="Step 4"></div>
+                <div class="step"><img src="step5.png" alt="Step 5"></div>
+            </div>
+            <button onclick="refresh()">Next Step</button>
         </div>
+
+        <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script>
+        let currentStep = 1;
+        function refresh() {
+            if (currentStep < 5) {
+                currentStep++;
+                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
+                document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
+                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
+            }
+        }
+
         function logout() {
             alert("Logging out...");
-            window.location.href = 'index.html'; // Redirect to login page
+            localStorage.clear();
+            window.location.href = '/login.html';
         }
+
+        async function validateToken(token) {
+            try {
+                const response = await fetch('https://94enp1fis9.execute-api.us-east-1.amazonaws.com/default/accessCust', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.status === 200) {
+                    const data = await response.json();
+                    document.getElementById('user-name').innerText = data.message;
+                } else {
+                    logout();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                logout();
+            }
+        }
+
+        window.onload = function () {
+            const token = localStorage.getItem('jwt_token');
+            if (!token) {
+                logout();
+            } else {
+                validateToken(token);
+            }
+        };
     </script>
 </body>
 </html>

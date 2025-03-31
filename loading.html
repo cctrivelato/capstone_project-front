@@ -45,6 +45,7 @@
             const token = localStorage.getItem('jwt_token');
             if (!token) {
                 window.location.href = '/login.html';  // Redirect to login page if no token is found
+                return null;
             }
             return token;
         }
@@ -52,7 +53,8 @@
         // Function to access the homepage using the token
         async function accessHomePage() {
             const token = getToken();
-
+            if (!token) return;
+            
             console.log(token);
 
             try {

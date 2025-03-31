@@ -108,7 +108,7 @@
         </ul>
 
         <div>
-            <h2>Delivery Progress</h2>
+            <h2>Service Progress</h2>
             <div class="progress-container">
                 <div class="progress-line">
                     <div id="progress-bar"></div>
@@ -147,7 +147,7 @@
 
         async function validateToken(token) {
             try {
-                const response = await fetch('https://94enp1fis9.execute-api.us-east-1.amazonaws.com/default/accessCust', {
+                const response = await fetch('https://091gxeg9z6.execute-api.us-east-1.amazonaws.com/default/accessStaff', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

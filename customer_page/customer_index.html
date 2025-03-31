@@ -17,6 +17,10 @@
             padding: 20px;
             text-align: center;
         }
+        .progress-block{
+            border: 1px solid black;
+            max-width: 900px;
+        }
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -33,6 +37,9 @@
             height: 5px;
             background: lightgray;
             z-index: -1;
+        }
+        .progress-block button {
+            margin-bottom: 20px;
         }
         #progress-bar {
             height: 5px;
@@ -102,8 +109,8 @@
             <h2>Welcome, <span id="user-name">User</span></h2>
         </div>
 
-        <div>
-            <h2>Delivery Progress</h2>
+        <div class="progress-block">
+            <h2>Service Progress</h2>
             <div class="progress-container">
                 <div class="progress-line">
                     <div id="progress-bar"></div>
@@ -117,7 +124,7 @@
                 <div class="step"><img src="step4.png" alt="Step 4"></div>
                 <div class="step"><img src="step5.png" alt="Step 5"></div>
             </div>
-            <button onclick="nextStep()">Next Step</button>
+            <button onclick="refresh()">Next Step</button>
         </div>
 
         <button class="logout-button" onclick="logout()">Logout</button>
@@ -125,7 +132,7 @@
 
     <script>
         let currentStep = 1;
-        function nextStep() {
+        function refresh() {
             if (currentStep < 5) {
                 currentStep++;
                 document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
@@ -162,14 +169,14 @@
             }
         }
 
-        window.onload = function () {
+        /** window.onload = function () {
             const token = localStorage.getItem('jwt_token');
             if (!token) {
                 logout();
             } else {
                 validateToken(token);
             }
-        };
+        }; */
     </script>
 </body>
 </html>

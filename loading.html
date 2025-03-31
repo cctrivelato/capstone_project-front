@@ -67,7 +67,7 @@
                 const data = await response.json();
                 if (response.status === 200) {
                     document.getElementById('message').innerText = data.message;
-                    if (data.type == "Customer"){
+                    if (data.type === "Customer"){
                         window.location.href = 'customer_page/customer_index.html'; 
                     } else {
                         window.location.href = 'staff_page/staff_index.html';  
@@ -79,7 +79,7 @@
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('message').innerText = 'Failed to fetch user home page.';
-                window.location.href = '/login.html'; 
+                //window.location.href = '/login.html'; 
             }
         }
 

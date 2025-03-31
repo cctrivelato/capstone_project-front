@@ -29,35 +29,30 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     let phone = document.getElementById('phone').value;
     let e_add = document.getElementById('email').value;
     let passw = document.getElementById('password').value;
-    let randomnum = Math.floor(Math.random() * 90000) + 10000;
 
     if (window.customer_selected === false){
-        let staffID = randomnum.toString();
-        let url = 'https://vsgec6b4dg.execute-api.us-east-1.amazonaws.com/default/StaffPutIt';
-        console.log(staffID);
-
-        toJson(fname, lname, phone, e_add, passw, staffID, url);
+        let type = "Staff";
+        console.log(type);
     } 
     else {
-        let customerID = randomnum.toString();
-        let url = 'https://aoqf65lohd.execute-api.us-east-1.amazonaws.com/default/CustPutIt';
-        console.log(customerID);
-
-        toJson(fname, lname, phone, e_add, passw, customerID, url);
+        let type = "Customer";
+        console.log(type);
     }
+
+    toJson(fname, lname, phone, e_add, passw, type);
 });
 
-function toJson(fname, lname, phone, e_add, passw, type, url){
+function toJson(fname, lname, phone, e_add, passw, type){
     newUser = {
         firstname: fname,
         lastname: lname,
         phoneNum: phone,
         email_add: e_add,
         pwd: passw,
-        ID: id
+        Type: type
     };
 
-    fetch(url, {
+    fetch("https://1zts1kxmh0.execute-api.us-east-1.amazonaws.com/default/SignupUser", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

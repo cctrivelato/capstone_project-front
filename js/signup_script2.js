@@ -29,13 +29,14 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     let phone = document.getElementById('phone').value;
     let e_add = document.getElementById('email').value;
     let passw = document.getElementById('password').value;
+    let type = 'Customer';
 
     if (window.customer_selected === false){
-        let type = "Staff";
+        type = 'Staff';
         console.log(type);
     } 
     else {
-        let type = "Customer";
+        type = 'Customer';
         console.log(type);
     }
 

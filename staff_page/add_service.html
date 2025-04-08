@@ -177,7 +177,7 @@
 
         <div>
             <h2>Add New Vet Service</h2>
-            <form action="/submit-service" method="post">
+            <form action="/submit-service" id="myForm" method="post">
                 <label for="firstName">Client First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" required><br><br>
 
@@ -225,7 +225,7 @@
                 ServiceID: serviceID
             };
 
-            fetch("APIIIIII HEREEEE", {
+            fetch("https://zv4r0n8i1l.execute-api.us-east-1.amazonaws.com/default/NewService", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -11,6 +11,12 @@
             padding: 0;
             background-color: #f0f4f8;
         }
+        header {
+            background-color: #390f5c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
         nav {
             position: fixed; /* Adjusted to give space under the header */
             top: 0;
@@ -85,6 +91,10 @@
             background-color: #390f5c;
             color: white;
         }
+        .progress-block{
+            border: 1px solid black;
+            max-width: 900px;
+        }
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -101,6 +111,9 @@
             height: 5px;
             background: lightgray;
             z-index: -1;
+        }
+        .progress-block button {
+            margin-bottom: 20px;
         }
         #progress-bar {
             height: 5px;
@@ -169,48 +182,48 @@
             <li><a href="/index.html">Back to Initial Page</a></li>
         </ul>
     </nav>
-    
+
     <div class="content">
         <div class="user-info">
-            <h2>Welcome to your home page as Staff, <span id="user-name">User</span></h2>
+            <h2>Welcome to your home page, <span id="user-name">User</span></h2>
         </div>
 
-        <ul id="serviceList"></ul> 
-
-        <div>
+        <div class="progress-block">
             <h2>Service Progress</h2>
+            <div class="progress-container">
+                <div class="progress-line">
+                    <div id="progress-bar"></div>
+                </div>
+                <div class="dog-container" id="dog-container">
+                    <img src="images/dog.png" alt="Dog">
+                </div>
+                <div class="step active"><img src="step1.png" alt="Step 1"></div>
+                <div class="step"><img src="step2.png" alt="Step 2"></div>
+                <div class="step"><img src="step3.png" alt="Step 3"></div>
+                <div class="step"><img src="step4.png" alt="Step 4"></div>
+                <div class="step"><img src="step5.png" alt="Step 5"></div>
+            </div>
+            
+            <form id="myForm">
+                <label for="email">Email:</label>
+                <input type="text" id="clientEmail" name="clientEmail" required>
+            
+                <button onclick="refresh()">Next Step</button>
+            </form>
         </div>
-
-        <div>
-            <a href="add_service.html">Add New Service</a>
-        </div>
-        
 
         <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script>
-        function serviceList() {
-            const apiUrl = 'https://your-api-id.execute-api.region.amazonaws.com/prod/services';
-
-            fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById('serviceList');
-                const services = data.services;
-
-                // For dictionary format
-                for (const serviceId in services) {
-                const li = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = `/service/${serviceId}`;
-                link.textContent = `Service ID: ${serviceId} - Pet: ${services[serviceId].pet}`;
-                li.appendChild(link);
-                list.appendChild(li);
-                }
-            
-            })
-            .catch(error => console.error('Error fetching services:', error));
+        let currentStep = 1;
+        function refresh() {
+            if (currentStep < 5) {
+                currentStep++;
+                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
+                document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
+                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
+            }
         }
 
         function logout() {
@@ -247,7 +260,6 @@
                 logout();
             } else {
                 validateToken(token);
-                serviceList();
             }
         };
     </script>

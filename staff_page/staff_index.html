@@ -198,7 +198,7 @@
             console.log(newUser);
 
             fetch("https://yx4q6u6opa.execute-api.us-east-1.amazonaws.com/default/CheckLiveService", {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -242,10 +242,8 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
-                    firstem = data.email;
-                    firstTy = data.type;
-                    email_addr = toString(firstem);
-                    user_type = toString(firstTy);
+                    email_addr = data.email;
+                    user_type = data.type;
 
                     console.log(email_addr);
                     console.log(user_type);
@@ -265,7 +263,6 @@
                 logout();
             } else {
                 validateToken(token);
-                serviceList();
             }
         };
     </script>

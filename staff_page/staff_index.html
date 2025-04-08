@@ -213,8 +213,8 @@
                 for (const serviceId in services) {
                 const li = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = `/service/${serviceId}`;
-                link.textContent = `Service ID: ${serviceId} - Pet: ${services[serviceId].pet}`;
+                link.href = `update_service_step.html`;
+                link.textContent = `Service ID: ${serviceId+1} - Pet: ${services[serviceId].PetName}`;
                 li.appendChild(link);
                 list.appendChild(li);
                 }

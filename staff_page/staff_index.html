@@ -193,7 +193,8 @@
         .service-item {
             display: table-row;
             background-color: #fff;
-            border: 1px solid #ddd;
+            color: #2b0844;
+            list-style: none;
             border-radius: 5px;
             margin-bottom: 5px;
             padding: 40px;
@@ -290,7 +291,7 @@
                     li.classList.add('service-item');
                     const link = document.createElement('a');
                     link.href = `update_service_step.html`;
-                    link.textContent = `Service ID: ${serviceId+1} - Pet: ${services[serviceId].PetName}`;
+                    link.textContent = `Service ID: ${serviceId+1} - Pet Name: ${services[serviceId].PetName}`;
                     li.appendChild(link);
                     list.appendChild(li);
                 }

@@ -172,13 +172,8 @@
     
     <div class="content">
         <div class="user-info">
-            <h2>Welcome to your home page as Staff, <span id="user-name">User</span></h2>
+            <h1>Welcome to your home page as Staff, <span id="user-name" aria-placeholder="User"></span></h1>
         </div>
-
-        <ul>
-            <li><button></button></li>
-            <li><button onclick="service()"></button></li>
-        </ul>
 
         <div>
             <h2>Add New Vet Service</h2>
@@ -193,10 +188,10 @@
                 <input type="text" id="petType" name="petType" required><br><br>
 
                 <label for="serviceId">Service ID:</label><br>
-                <input type="text" id="serviceId" name="serviceId" placeholder="Enter new service ID"><br><br>
+                <input type="text" id="serviceId" name="serviceId" placeholder="Enter new Service ID"><br><br>
 
                 <label for="customerId">Client Email:</label><br>
-                <input type="text" id="email" name="email" placeholder="Enter customer ID"><br><br>
+                <input type="text" id="email" name="email"><br><br>
 
                 <input type="submit" value="Add Service">
             </form>
@@ -210,16 +205,6 @@
     </div>
 
     <script>
-        let currentStep = 1;
-        function refresh() {
-            if (currentStep < 5) {
-                currentStep++;
-                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
-                document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
-                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
-            }
-        }
-
         document.getElementById("myForm").addEventListener("submit", function(event) {
             event.preventDefault();
             let fname = document.getElementById('firstName').value;

@@ -189,10 +189,7 @@
     </div>
 
     <script>
-        let email_addr = '';
-        let user_type = 'Customer';
-
-        function serviceList() {
+        function serviceList(email_addr, user_type) {
             newUser = {
                 Email: email_addr,
                 Type: user_type
@@ -247,6 +244,11 @@
                     document.getElementById('user-name').innerText = data.message;
                     email_addr = data.email;
                     user_type = data.type;
+
+                    
+                    serviceList(email_addr, user_type);
+                    console.log(email_addr);
+                    console.log(user_type);
                 } else {
                     logout();
                 }

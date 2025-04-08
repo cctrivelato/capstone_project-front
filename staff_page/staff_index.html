@@ -242,13 +242,12 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
-                    email_addr = data.email;
-                    user_type = data.type;
+                    email_addr = toString(data.email);
+                    user_type = toString(data.type);
 
-                    
-                    serviceList(email_addr, user_type);
                     console.log(email_addr);
                     console.log(user_type);
+                    serviceList(email_addr, user_type);
                 } else {
                     logout();
                 }

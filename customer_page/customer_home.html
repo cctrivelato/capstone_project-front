@@ -235,7 +235,7 @@
 
         async function loadInProgressServices() {
             try {
-                const response = await fetch('https://your-api-url.amazonaws.com/in-progress-services', { // replace with your Lambda API endpoint
+                const response = await fetch('', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
@@ -256,14 +256,14 @@
 
         function displayInProgressServices(services) {
             const servicesContainer = document.querySelector('.live-services');
-            servicesContainer.innerHTML = '';  // Clear any existing services
+            servicesContainer.innerHTML = '';
 
             servicesContainer.innerHTML = '<ul>';
 
             services.forEach(service => {
                 if (service.status === 'in_progress') {
                     serviceContainer.innerHTML = `
-                        <li><a href="customer_service.html">${service.name}</a></li>
+                        <li><a href="customer_service.html">${service.name} service for ${service.client}</a></li>
                     `;
                 }
             });

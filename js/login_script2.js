@@ -34,7 +34,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     if (window.customer_selected === false){
         type = "Staff";
         console.log(type);
-        toJson(passw, id, type);
+        toJson(passw, email, type);
     } else {
         let type = "Customer";
         console.log(type);

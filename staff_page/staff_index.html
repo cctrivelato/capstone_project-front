@@ -161,70 +161,80 @@
             background-color: #2b0844;
         }
         /* Main container styling */
-main {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    padding: 20px;
-}
+        main {
+            font-family: Arial, sans-serif;
+            background-color: #2b0844;
+            color: #f1f1f1;
+            border-radius: 50px;
+            padding: 20px;
+            width: 1200px;
+            justify-self: center;
+            display: flex;
+            flex-direction: row;
+        }
 
-/* Service List Table */
-.service-list {
-    margin-bottom: 20px;
-}
+        /* Service List Table */
+        .service-list {
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            padding-right: 600px;
+        }
 
-.service-table {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-}
+        .service-table {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-.service-item {
-    display: table-row;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    padding: 10px;
-}
+        .service-item {
+            display: table-row;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
 
-.service-item:nth-child(even) {
-    background-color: #f1f1f1;
-}
+        .service-item:nth-child(even) {
+            background-color: #f1f1f1;
+        }
 
-.service-name, .service-description {
-    display: table-cell;
-    padding: 10px;
-    text-align: left;
-}
+        .service-name, .service-description {
+            display: table-cell;
+            padding: 10px;
+            text-align: left;
+        }
 
-.service-name {
-    font-weight: bold;
-    color: #2c3e50;
-}
+        .service-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
 
-.service-description {
-    color: #7f8c8d;
-}
+        .service-description {
+            color: #7f8c8d;
+        }
 
-/* Add New Service Link */
-.add-service-link {
-    display: inline-block;
-    font-size: 20px;
-    color: #ffffff;
-    background-color: #3498db;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-}
+        /* Add New Service Link */
+        .add-service-link {
+            display: inline-block;
+            font-size: 20px;
+            color: #2b0844;
+            background-color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 40px;
+            transition: background-color 0.3s ease;
+        }
 
-.add-service-link:hover {
-    background-color: #2980b9;
-}
+        .add-service-link:hover {
+            background-color: #591492;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -245,7 +255,7 @@ main {
                 <h2>Service In Progress</h2>
                 <ul class="service-table" id="serviceList"></ul> 
             </div>
-            <a href="add_service.html" class="add-service-link" id="addServiceLink">Add New Service</a>
+            <a href="add_service.html" class="add-service-link" id="addServiceLink">Add New Service +</a>
         </main>
         
 

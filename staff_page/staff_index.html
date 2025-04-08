@@ -189,10 +189,24 @@
     </div>
 
     <script>
-        function serviceList() {
-            const apiUrl = 'https://your-api-id.execute-api.region.amazonaws.com/prod/services';
+        let email_addr = '';
+        let user_type = 'Customer';
 
-            fetch(apiUrl)
+        function serviceList() {
+            newUser = {
+                Email: email_addr,
+                Type: user_type
+            };
+
+            console.log(newUser);
+
+            fetch("https://yx4q6u6opa.execute-api.us-east-1.amazonaws.com/default/CheckLiveService", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
             .then(response => response.json())
             .then(data => {
                 const list = document.getElementById('serviceList');
@@ -231,6 +245,8 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
+                    email_addr = data.email;
+                    user_type = data.type;
                 } else {
                     logout();
                 }

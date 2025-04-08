@@ -181,11 +181,29 @@
         </ul>
 
         <div>
-            <h2>Service Progress</h2>
-            <div class="add-new-service">
-               <a href="add_service.html">Add New Service</a>
-            </div>
-            <button onclick="refresh()">Next Step</button>
+            <h2>Add New Vet Service</h2>
+            <form action="/submit-service" method="post">
+                <label for="firstName">Client First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required><br><br>
+
+                <label for="petName">Pet Name:</label><br>
+                <input type="text" id="petName" name="petName" required><br><br>
+
+                <label for="petType">Pet Type:</label><br>
+                <input type="text" id="petType" name="petType" required><br><br>
+
+                <label for="serviceId">Service ID:</label><br>
+                <input type="text" id="serviceId" name="serviceId" placeholder="Enter new service ID"><br><br>
+
+                <label for="customerId">Client Email:</label><br>
+                <input type="text" id="email" name="email" placeholder="Enter customer ID"><br><br>
+
+                <input type="submit" value="Add Service">
+            </form>
+        </div>
+
+        <div id="message-box" style="display: none; padding: 20px; border: 1px solid green; background: #e6ffe6;">
+            <p id="message-text"></p>
         </div>
 
         <button class="logout-button" onclick="logout()">Logout</button>
@@ -200,6 +218,52 @@
                 document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
                 document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
             }
+        }
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let fname = document.getElementById('firstName').value;
+            let pet = document.getElementById('petName').value;
+            let pType = document.getElementById('petType').value;
+            let e_add = document.getElementById('email').value;
+            let serviceID = document.getElementById('serviceId').value;
+
+            toJson(fname, pet, pType, e_add, serviceID);
+        })
+
+        function toJson(fname, pet, pType, e_add, serviceID){
+            newUser = {
+                firstname: fname,
+                petname: pet,
+                PetType: pType,
+                Email: e_add,
+                ServiceID: serviceID
+            };
+
+            fetch("APIIIIII HEREEEE", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            }).then(res => {
+                if (!res.ok) {
+                    console.log('Problem');
+                    return;
+                }
+
+                return res.json();
+            })
+            .then(data => {
+                document.getElementById("message-text").innerText = data.message;
+                document.getElementById("message-box").style.display = "block";
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 3000);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
 
         function logout() {

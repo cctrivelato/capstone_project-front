@@ -91,6 +91,18 @@
             background-color: #390f5c;
             color: white;
         }
+        main {
+            background: url("images/pet_back.jpg") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            height: 100vh; /* Adjusted for full viewport height */
+            padding: 40px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
         .progress-block{
             border: 1px solid black;
             max-width: 900px;
@@ -183,33 +195,35 @@
         </ul>
     </nav>
 
-    <div class="content">
-        <div class="user-info">
-            <h2>Welcome to your home page, <span id="user-name">User</span></h2>
-        </div>
-
-        <div class="progress-block">
-            <h2>Service Progress</h2>
-            <div class="progress-container">
-                <div class="progress-line">
-                    <div id="progress-bar"></div>
-                </div>
-                <div class="dog-container" id="dog-container">
-                    <img src="images/dog.png" alt="Dog">
-                </div>
-                <div class="step active"><img src="step1.png" alt="Step 1"></div>
-                <div class="step"><img src="step2.png" alt="Step 2"></div>
-                <div class="step"><img src="step3.png" alt="Step 3"></div>
-                <div class="step"><img src="step4.png" alt="Step 4"></div>
-                <div class="step"><img src="step5.png" alt="Step 5"></div>
+    <main>
+        <div class="content">
+            <div class="user-info">
+                <h2>Welcome to your home page, <span id="user-name">User</span></h2>
             </div>
 
-            <p id="description-text">Click here to check for updates on Service Progress</p>
-            <button onclick="refresh()">Refresh</button>
-        </div>
+            <div class="progress-block">
+                <h2>Service Progress</h2>
+                <div class="progress-container">
+                    <div class="progress-line">
+                        <div id="progress-bar"></div>
+                    </div>
+                    <div class="dog-container" id="dog-container">
+                        <img src="images/dog.png" alt="Dog">
+                    </div>
+                    <div class="step active"><img src="step1.png" alt="Step 1"></div>
+                    <div class="step"><img src="step2.png" alt="Step 2"></div>
+                    <div class="step"><img src="step3.png" alt="Step 3"></div>
+                    <div class="step"><img src="step4.png" alt="Step 4"></div>
+                    <div class="step"><img src="step5.png" alt="Step 5"></div>
+                </div>
 
-        <button class="logout-button" onclick="logout()">Logout</button>
-    </div>
+                <p id="description-text">Click here to check for updates on Service Progress</p>
+                <button onclick="refresh()">Refresh</button>
+            </div>
+
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+    </main>
 
     <script>
         let currentStep = 1;

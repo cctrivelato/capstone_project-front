@@ -85,6 +85,18 @@
             background-color: #390f5c;
             color: white;
         }
+        main {
+            background: url("images/pet_back.jpg") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            height: 100vh; /* Adjusted for full viewport height */
+            padding: 40px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -161,7 +173,7 @@
             background-color: #2b0844;
         }
         /* Main container styling */
-        main {
+        .classique {
             font-family: Arial, sans-serif;
             background-color: #2b0844;
             color: #f1f1f1;
@@ -247,22 +259,24 @@
         </ul>
     </nav>
     
-    <div class="content">
-        <div class="user-info">
-            <h2>Welcome to your home page as Staff, <span id="user-name">User</span></h2>
-        </div>
-
-        <main>
-            <div class="service-list">
-                <h2>Service In Progress</h2>
-                <ul class="service-table" id="serviceList"></ul> 
+    <main>
+        <div class="content">
+            <div class="user-info">
+                <h2>Welcome to your home page as Staff, <span id="user-name">User</span></h2>
             </div>
-            <a href="add_service.html" class="add-service-link" id="addServiceLink">Add New Service +</a>
-        </main>
-        
 
-        <button class="logout-button" onclick="logout()">Logout</button>
-    </div>
+            <div class="classique">
+                <div class="service-list">
+                    <h2>Service In Progress</h2>
+                    <ul class="service-table" id="serviceList"></ul> 
+                </div>
+                <a href="add_service.html" class="add-service-link" id="addServiceLink">Add New Service +</a>
+            </div>
+            
+
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+    </main>
 
     <script>
         function serviceList(email1, user_type1) {

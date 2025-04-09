@@ -85,6 +85,18 @@
             background-color: #390f5c;
             color: white;
         }
+        main {
+            background: url("images/pet_back.jpg") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            height: 100vh; /* Adjusted for full viewport height */
+            padding: 40px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -170,39 +182,41 @@
         </ul>
     </nav>
     
-    <div class="content">
-        <div class="user-info">
-            <h1>Welcome to your home page as Staff, <span id="user-name" aria-placeholder="User"></span></h1>
+    <main>
+        <div class="content">
+            <div class="user-info">
+                <h1>Welcome to your home page as Staff, <span id="user-name" aria-placeholder="User"></span></h1>
+            </div>
+
+            <div>
+                <h2>Add New Vet Service</h2>
+                <form action="/submit-service" id="myForm" method="post">
+                    <label for="firstName">Client First Name:</label><br>
+                    <input type="text" id="firstName" name="firstName" required><br><br>
+
+                    <label for="petName">Pet Name:</label><br>
+                    <input type="text" id="petName" name="petName" required><br><br>
+
+                    <label for="petType">Pet Type:</label><br>
+                    <input type="text" id="petType" name="petType" required><br><br>
+
+                    <label for="serviceId">Service ID:</label><br>
+                    <input type="text" id="serviceId" name="serviceId" placeholder="Enter new Service ID"><br><br>
+
+                    <label for="customerId">Client Email:</label><br>
+                    <input type="text" id="email" name="email"><br><br>
+
+                    <input type="submit" value="Add Service">
+                </form>
+            </div>
+
+            <div id="message-box" style="display: none; padding: 20px; border: 1px solid green; background: #e6ffe6;">
+                <p id="message-text"></p>
+            </div>
+
+            <button class="logout-button" onclick="logout()">Logout</button>
         </div>
-
-        <div>
-            <h2>Add New Vet Service</h2>
-            <form action="/submit-service" id="myForm" method="post">
-                <label for="firstName">Client First Name:</label><br>
-                <input type="text" id="firstName" name="firstName" required><br><br>
-
-                <label for="petName">Pet Name:</label><br>
-                <input type="text" id="petName" name="petName" required><br><br>
-
-                <label for="petType">Pet Type:</label><br>
-                <input type="text" id="petType" name="petType" required><br><br>
-
-                <label for="serviceId">Service ID:</label><br>
-                <input type="text" id="serviceId" name="serviceId" placeholder="Enter new Service ID"><br><br>
-
-                <label for="customerId">Client Email:</label><br>
-                <input type="text" id="email" name="email"><br><br>
-
-                <input type="submit" value="Add Service">
-            </form>
-        </div>
-
-        <div id="message-box" style="display: none; padding: 20px; border: 1px solid green; background: #e6ffe6;">
-            <p id="message-text"></p>
-        </div>
-
-        <button class="logout-button" onclick="logout()">Logout</button>
-    </div>
+    </main>
 
     <script>
         document.getElementById("myForm").addEventListener("submit", function(event) {

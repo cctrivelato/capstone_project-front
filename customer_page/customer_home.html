@@ -11,12 +11,6 @@
             padding: 0;
             background-color: #f0f4f8;
         }
-        header {
-            background-color: #390f5c;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
         nav {
             position: fixed; /* Adjusted to give space under the header */
             top: 0;
@@ -91,10 +85,6 @@
             background-color: #390f5c;
             color: white;
         }
-        .progress-block{
-            border: 1px solid black;
-            max-width: 900px;
-        }
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -111,9 +101,6 @@
             height: 5px;
             background: lightgray;
             z-index: -1;
-        }
-        .live-services button {
-            margin-bottom: 20px;
         }
         #progress-bar {
             height: 5px;
@@ -173,6 +160,83 @@
         .logout-button:hover {
             background-color: #2b0844;
         }
+        /* Main container styling */
+        main {
+            font-family: Arial, sans-serif;
+            background-color: #2b0844;
+            color: #f1f1f1;
+            border-radius: 50px;
+            padding: 20px;
+            width: 1200px;
+            justify-self: center;
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Service List Table */
+        .service-list {
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            padding-right: 600px;
+        }
+
+        .service-table {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .service-item {
+            display: table-row;
+            background-color: #fff;
+            color: #2b0844;
+            list-style: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            padding: 40px;
+        }
+
+        .service-item:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        .service-name, .service-description {
+            display: table-cell;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .service-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .service-description {
+            color: #7f8c8d;
+        }
+
+        /* Add New Service Link */
+        .add-service-link {
+            display: inline-block;
+            font-size: 20px;
+            color: #2b0844;
+            background-color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 40px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-service-link:hover {
+            background-color: #591492;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -182,27 +246,57 @@
             <li><a href="/index.html">Back to Initial Page</a></li>
         </ul>
     </nav>
-
+    
     <div class="content">
         <div class="user-info">
             <h2>Welcome to your home page, <span id="user-name">User</span></h2>
         </div>
 
-        <div class="live-services">
-        </div>
+        <main>
+            <div class="service-list">
+                <h2>Service In Progress</h2>
+                <ul class="service-table" id="serviceList"></ul> 
+            </div>
+        </main>
+        
 
         <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script>
-        let currentStep = 1;
-        function refresh() {
-            if (currentStep < 5) {
-                currentStep++;
-                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
-                document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
-                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
-            }
+        function serviceList(email1, user_type1) {
+            newUser = {
+                Email: email1,
+                Type: user_type1
+            };
+
+            console.log(newUser);
+
+            fetch("https://yx4q6u6opa.execute-api.us-east-1.amazonaws.com/default/CheckLiveService", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('serviceList');
+                const services = data.services;
+
+                // For dictionary format
+                for (const serviceId in services) {
+                    const li = document.createElement('li');
+                    li.classList.add('service-item');
+                    const link = document.createElement('a');
+                    link.href = `customer_index.html`;
+                    link.textContent = `Service ID: ${serviceId+1} - Pet Name: ${services[serviceId].PetName}`;
+                    li.appendChild(link);
+                    list.appendChild(li);
+                }
+            
+            })
+            .catch(error => console.error('Error fetching services:', error));
         }
 
         function logout() {
@@ -224,6 +318,12 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     document.getElementById('user-name').innerText = data.message;
+                    email_addr = data.email;
+                    user_type = data.type;
+
+                    console.log(email_addr);
+                    console.log(user_type);
+                    serviceList(email_addr, user_type);
                 } else {
                     logout();
                 }
@@ -233,51 +333,12 @@
             }
         }
 
-        async function loadInProgressServices() {
-            try {
-                const response = await fetch('', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (response.status === 200) {
-                    const data = await response.json();
-                    displayInProgressServices(data.services);
-                } else {
-                    console.log("Error fetching services:", response.status);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        function displayInProgressServices(services) {
-            const servicesContainer = document.querySelector('.live-services');
-            servicesContainer.innerHTML = '';
-
-            servicesContainer.innerHTML = '<ul>';
-
-            services.forEach(service => {
-                if (service.status === 'in_progress') {
-                    serviceContainer.innerHTML = `
-                        <li><a href="customer_service.html">${service.name} service for ${service.client}</a></li>
-                    `;
-                }
-            });
-
-            servicesContainer.innerHTML = '</ul>';
-        }
-
         window.onload = function () {
             const token = localStorage.getItem('jwt_token');
             if (!token) {
                 logout();
             } else {
                 validateToken(token);
-                loadInProgressServices();
             }
         };
     </script>

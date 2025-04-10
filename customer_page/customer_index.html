@@ -104,55 +104,79 @@
             align-items: center;
             text-align: center;
         }
-        .progress-block{
-            border: 1px solid black;
-            max-width: 900px;
+
+        main h1 {
+            font-size: 8vh;
         }
+
         .progress-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 600px;
-            margin: 100px auto;
             position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 100px auto;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+
         .progress-line {
             position: absolute;
             top: 50%;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: lightgray;
-            z-index: -1;
+            height: 6px;
+            background-color: #ccc;
+            z-index: 0;
+            border-radius: 3px;
+            transform: translateY(-50%);
         }
-        .progress-block button {
-            margin-bottom: 20px;
-        }
+
         #progress-bar {
-            height: 5px;
-            background: green;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 6px;
+            background: #28a745;
             width: 0%;
             transition: width 0.5s ease;
+            border-radius: 3px;
+            z-index: 1;
+            transform: translateY(-50%);
         }
+
         .step {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            text-align: center;
         }
+
         .step img {
-            width: 100%;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
+            width: 60px;
+            height: 60px;
+            border: 4px solid #ccc;
+            border-radius: 50%;
+            margin-right: 50px;
+            background-color: white;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            z-index: 2;
         }
+
         .step.active img {
-            opacity: 1;
+            border-color: #28a745;
+            transform: scale(1.1);
+        }
+        .progress-block{
+            background-color: #cccccc96;
+            color: #390f5c;
+            padding: 50px;
+            border-radius: 20px;
         }
         .dog-container {
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translate(-50%, -50%);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -161,8 +185,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            transition: transform 0.5s ease;
-            z-index: 1;
+            transition: left 0.5s ease;
+            z-index: 3;
         }
         .dog-container img {
             width: 100%;
@@ -205,14 +229,13 @@
             <div class="progress-block">
                 <h2>Service Progress</h2>
                 <div class="progress-container">
-                    <div class="progress-line">
-                        <div id="progress-bar"></div>
-                    </div>
+                    <div class="progress-line"></div>
+                    <div id="progress-bar"></div>
                     <div class="dog-container" id="dog-container">
                         <img src="images/dog.png" alt="Dog">
                     </div>
-                    <div class="step active"><img src="step1.png" alt="Step 1"></div>
-                    <div class="step"><img src="step2.png" alt="Step 2"></div>
+                    <div class="step active"><img src="/css/images/first-interaction.jpg" alt="Step 1"></div>
+                    <div class="step"><img src="/css/images/doc-arrival.jpg" alt="Step 2"></div>
                     <div class="step"><img src="step3.png" alt="Step 3"></div>
                     <div class="step"><img src="step4.png" alt="Step 4"></div>
                     <div class="step"><img src="step5.png" alt="Step 5"></div>

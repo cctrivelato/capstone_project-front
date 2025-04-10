@@ -104,75 +104,84 @@
             align-items: center;
             text-align: center;
         }
-        .progress-block{
-            background-color: #f0f4f87c;
-            width: 1100px;
-        }
         .progress-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 600px;
-            margin: 100px auto;
-            position: relative;
-        }
-        .progress-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background-color: #318647;
-            z-index: 0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        .progress-block button {
-            margin-bottom: 20px;
-        }
-        #progress-bar {
-            height: 5px;
-            background: green;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        .step {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .step img {
-            width: 300%;
-            height: 300%;
-            border-radius: 50%;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-        .step.active img {
-            opacity: 1;
-        }
-        .dog-container {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: lightblue;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: transform 0.5s ease;
-            z-index: 1;
-        }
-        .dog-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 100px auto;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: #ccc;
+    z-index: 0;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+#progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 6px;
+    background: #28a745;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 3px;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    text-align: center;
+}
+
+.step img {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    z-index: 2;
+}
+
+.step.active img {
+    border-color: #28a745;
+    transform: scale(1.1);
+}
+
+.dog-container {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: left 0.5s ease;
+    z-index: 3;
+}
+.dog-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
         .content {
             text-align: center;
             margin-top: 100px;
@@ -209,8 +218,10 @@
             <div class="progress-block">
                 <h2>Service Progress</h2>
                 <div class="progress-container">
-                    <div class="progress-line">
-                        <div id="progress-bar"></div>
+                    <div class="progress-line"></div>
+                    <div id="progress-bar"></div>
+                    <div class="dog-container" id="dog-container">
+                        <img src="images/dog.png" alt="Dog">
                     </div>
                     <div class="step active"><img src="/css/images/first-interaction.jpg" alt="Step 1"></div>
                     <div class="step"><img src="/css/images/doc-arrival.jpg" alt="Step 2"></div>
@@ -220,19 +231,26 @@
                 </div>
                 <button class="logout-button" onclick="nextStep()">Next Step</button>
             </div>
-
             <button class="logout-button" onclick="logout()">Logout</button>
         </div>
     </main>
 
     <script>
         let currentStep = 1;
+        const totalSteps = 5;
+
         function nextStep() {
-            if (currentStep < 5) {
+            if (currentStep < totalSteps) {
                 currentStep++;
-                document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';
+                const stepPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+                document.getElementById('progress-bar').style.width = stepPercent + '%';
+
+                const dog = document.getElementById('dog-container');
+                const containerWidth = document.querySelector('.progress-container').offsetWidth;
+                const newLeft = (stepPercent / 100) * containerWidth;
+                dog.style.left = `${newLeft}px`;
+
                 document.querySelectorAll('.step')[currentStep - 1].classList.add('active');
-                document.getElementById('dog-container').style.transform = `translate(${((currentStep - 1) / 4) * 600}px, -50%)`;
             }
         }
 

@@ -188,48 +188,44 @@
 
         /* Service List Table */
         .service-list {
-            padding-bottom: 20px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            padding-right: 600px;
+            gap: 20px;
+            width: 100%;
         }
 
         .service-table {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
             margin: 0;
-            display: table;
-            width: 100%;
-            border-collapse: collapse;
         }
 
         .service-item {
-            display: table-row;
-            background-color: #fff;
+            background: white;
             color: #2b0844;
-            list-style: none;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            padding: 40px;
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .service-item:nth-child(even) {
-            background-color: #f1f1f1;
+        .service-item:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
         }
 
-        .service-name, .service-description {
-            display: table-cell;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .service-name {
+        .service-item a {
+            color: #2b0844;
             font-weight: bold;
-            color: #2c3e50;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
         }
 
-        .service-description {
-            color: #7f8c8d;
+        .service-item a:hover {
+            color: #591492;
         }
 
         /* Add New Service Link */

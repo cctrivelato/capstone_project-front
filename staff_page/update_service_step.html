@@ -98,12 +98,17 @@
             position: relative;
             height: 100vh; /* Adjusted for full viewport height */
             padding: 40px;
-            color: white;
+            color: #390f5c;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
+
+        main h1 {
+            font-size: 15vh;
+        }
+
         .progress-container {
             position: relative;
             width: 100%;
@@ -152,6 +157,7 @@
             height: 60px;
             border: 4px solid #ccc;
             border-radius: 50%;
+            margin-right: 50px;
             background-color: white;
             transition: transform 0.3s ease, border-color 0.3s ease;
             z-index: 2;
@@ -217,7 +223,7 @@
     <main>
         <div class="content">
             <div class="user-info">
-                <h2>Welcome to your home page, <span id="user-name">User</span></h2>
+                <h1>Welcome to your home page, <span id="user-name">User</span></h1>
             </div>
 
             <div class="progress-block">

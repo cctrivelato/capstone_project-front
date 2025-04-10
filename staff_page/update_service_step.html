@@ -217,6 +217,7 @@
                     <div class="step"><img src="step4.png" alt="Step 4"></div>
                     <div class="step"><img src="step5.png" alt="Step 5"></div>
                 </div>
+                <button class="logout-button" onclick="nextStep()">Next Step</button>
             </div>
 
             <button class="logout-button" onclick="logout()">Logout</button>
@@ -225,7 +226,7 @@
 
     <script>
         let currentStep = 1;
-        function refresh() {
+        function nextStep() {
             if (currentStep < 5) {
                 currentStep++;
                 document.getElementById('progress-bar').style.width = ((currentStep - 1) / 4) * 100 + '%';

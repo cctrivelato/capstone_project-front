@@ -283,7 +283,7 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    document.getElementById('user-name').innerText = data.message;
+                    document.getElementById('ServiceID').innerText = data.message;
                 } else {
                     logout();
                 }

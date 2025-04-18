@@ -261,7 +261,7 @@
 
             console.log(updateService);
 
-            fetch("", {
+            fetch("https://tu31c3zmo8.execute-api.us-east-1.amazonaws.com/default/UpdateService", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -270,7 +270,7 @@
             })
             .then(response => response.json())
             .then(data => {
-
+                conole.log("Service Progress Saved Successfully.");
             })
         }
 

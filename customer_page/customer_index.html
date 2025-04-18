@@ -314,8 +314,6 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    document.getElementById('user-name').innerText = data.message;
-                    console.log(data.message);
                     serviceID = localStorage.getItem('selectedServiceID');
                     console.log(serviceID);
                     setProgress(serviceID);

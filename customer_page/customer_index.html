@@ -273,6 +273,9 @@
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('petName').innerText = data.petName;
+                document.getElementById('petType').innerText = data.petType;
+
                 currentStep = data.Step;
                 const stepPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
                 document.getElementById('progress-bar').style.width = stepPercent + '%';
@@ -311,6 +314,7 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
+                    document.getElementById('user-name').innerText = data.message;
                     console.log(data.message);
                     serviceID = localStorage.getItem('selectedServiceID');
                     console.log(serviceID);

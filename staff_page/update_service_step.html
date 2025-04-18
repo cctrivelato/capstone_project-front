@@ -281,6 +281,9 @@
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('petName').innerText = data.petName;
+                document.getElementById('petType').innerText = data.petType;
+
                 currentStep = data.Step;
                 const stepPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
                 document.getElementById('progress-bar').style.width = stepPercent + '%';

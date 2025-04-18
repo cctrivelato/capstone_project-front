@@ -308,6 +308,11 @@
                     const link = document.createElement('a');
                     link.href = `customer_index.html`;
                     link.textContent = `Service ID: ${serviceId+1} - Pet Name: ${services[serviceId].PetName}`;
+
+                    link.addEventListener('click', function (e) {
+                        localStorage.setItem('selectedServiceID', service.ServiceID);
+                    });
+
                     li.appendChild(link);
                     list.appendChild(li);
                 }

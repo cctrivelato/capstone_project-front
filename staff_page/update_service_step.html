@@ -281,8 +281,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('petName').innerText = data.petName;
-                document.getElementById('petType').innerText = data.petType;
+                document.getElementById('ServiceID').innerText = serviceNum;
 
                 currentStep = data.Step;
                 const stepPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;

@@ -258,6 +258,24 @@
             window.location.href = 'customer_index.html';
         }
 
+        function step_wording() {
+            switch(currentStep) {
+                case 1:
+                    return "🐾 Your pet has arrived and is wagging their tail with excitement!";
+                case 2:
+                    return "🩺 Our vet is giving your pet a thorough checkup. They're being super brave!";
+                case 3:
+                    return "💊 Treatments or procedures are underway—your pet is in great hands!";
+                case 4:
+                    return "🛁 It’s spa time! Your pet is enjoying a relaxing wash and fluff.";
+                case 5:
+                    return "🏡 All done! Your pet is ready to head home fresh and happy!";
+                default:
+                    return "🐶 Waiting to start the service—your pet is getting comfy!";
+            }
+        }
+
+
         function setProgress(serviceNum){
             checkService = {
                 ServiceID: serviceNum
@@ -293,6 +311,8 @@
                         stepEl.classList.remove('active');
                     }
                 })
+
+                document.getElementById('description-text').innerText = step_wording();
             })
            .catch(error => console.error('Error fetching services:', error));
         }

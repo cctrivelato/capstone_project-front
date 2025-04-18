@@ -270,7 +270,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                conole.log("Service Progress Saved Successfully.");
+                console.log("Service Progress Saved Successfully.");
             })
         }
 
@@ -299,7 +299,7 @@
                 const dog = document.getElementById('dog-container');
                 const containerWidth = document.querySelector('.progress-container').offsetWidth;
                 const newLeft = (stepPercent / 100) * containerWidth;
-                dog.style.left = `${newLeft}vh`;
+                dog.style.left = `${newLeft}px`;
 
                 document.querySelectorAll('.step').forEach((stepEl, index) => {
                     if (index < step) {

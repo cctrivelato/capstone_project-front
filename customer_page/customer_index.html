@@ -241,6 +241,8 @@
                     <div class="step"><img src="/css/images/dog-send-home.jpg" alt="Step 5"></div>
                 </div>
 
+                <h3 id="description"></h3>
+
                 <p id="description-text">Click here to check for updates on Service Progress</p>
                 <button onclick="refresh()">Refresh</button>
             </div>
@@ -312,7 +314,7 @@
                     }
                 })
 
-                document.getElementById('description-text').innerText = step_wording();
+                document.getElementById('description').innerText = step_wording();
             })
            .catch(error => console.error('Error fetching services:', error));
         }

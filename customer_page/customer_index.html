@@ -287,7 +287,7 @@
                 dog.style.left = `${newLeft}px`;
 
                 document.querySelectorAll('.step').forEach((stepEl, index) => {
-                    if (index < step) {
+                    if (index < currentStep) {
                         stepEl.classList.add('active');
                     } else {
                         stepEl.classList.remove('active');

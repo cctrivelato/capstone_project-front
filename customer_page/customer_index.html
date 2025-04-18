@@ -251,6 +251,8 @@
 
     <script>
         let currentStep = 1;
+        let serviceID;
+
         function refresh() {
             window.location.href = 'customer_index.html';
         }
@@ -310,7 +312,8 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     console.log(data.message);
-                    let serviceID = localStorage.getItem('selectedServiceID');
+                    serviceID = localStorage.getItem('selectedServiceID');
+                    console.log(serviceID);
                     setProgress(serviceID);
                 } else {
                     logout();

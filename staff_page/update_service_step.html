@@ -248,6 +248,7 @@
 
     <script>
         const totalSteps = 5;
+        let serviceID;
 
         function nextStep() {
             if (currentStep < totalSteps) {
@@ -318,8 +319,8 @@
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    let serviceID = localStorage.getItem('selectedServiceID');
-
+                    serviceID = localStorage.getItem('selectedServiceID');
+                    console.log(serviceID);
                     setProgress(serviceID);
                 } else {
                     logout();

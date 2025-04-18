@@ -194,6 +194,7 @@
             object-fit: cover;
         }
         .content {
+            background-color: #390f5cbe;
             text-align: center;
             margin-top: 100px;
             padding: 20px;
@@ -244,6 +245,10 @@
             </div>
             <button class="logout-button" onclick="logout()">Logout</button>
         </div>
+
+        <div id="message-box" style="display: none; padding: 20px; border: 1px solid white; background: #390f5c;">
+            <p id="message-text"></p>
+        </div>
     </main>
 
     <script>
@@ -271,6 +276,8 @@
             .then(response => response.json())
             .then(data => {
                 console.log("Service Progress Saved Successfully.");
+                document.getElementById("message-text").innerText = "Service Progress Saved Successfully.";
+                document.getElementById("message-box").style.display = "block";
                 window.location.href = 'update_service_step.html'
             })
         }

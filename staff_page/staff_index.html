@@ -312,6 +312,10 @@
                     link.href = `update_service_step.html?serviceID=${service.ServiceID}`;
                     link.textContent = `Service ID: ${service.ServiceID} - Pet Name: ${service.PetName}`;
 
+                    link.addEventListener('click', function (e) {
+                        localStorage.setItem('selectedServiceID', service.ServiceID);
+                    });
+
                     li.appendChild(link);
                     list.appendChild(li);
                 });

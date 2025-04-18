@@ -255,6 +255,42 @@
             window.location.href = 'customer_index.html';
         }
 
+        function setProgress(serviceNum){
+            checkService = {
+                ServiceID: serviceNum
+            };
+
+            console.log(checkService);
+
+            fetch("https://6bjqwhjqtc.execute-api.us-east-1.amazonaws.com/default/serviceDisplay", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(checkService)
+            })
+            .then(response => response.json())
+            .then(data => {
+                currentStep = data.Step;
+                const stepPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+                document.getElementById('progress-bar').style.width = stepPercent + '%';
+
+                const dog = document.getElementById('dog-container');
+                const containerWidth = document.querySelector('.progress-container').offsetWidth;
+                const newLeft = (stepPercent / 100) * containerWidth;
+                dog.style.left = `${newLeft}px`;
+
+                document.querySelectorAll('.step').forEach((stepEl, index) => {
+                    if (index < step) {
+                        stepEl.classList.add('active');
+                    } else {
+                        stepEl.classList.remove('active');
+                    }
+                })
+            })
+           .catch(error => console.error('Error fetching services:', error));
+        }
+
         function logout() {
             alert("Logging out...");
             localStorage.clear();
@@ -274,7 +310,8 @@
                 if (response.status === 200) {
                     const data = await response.json();
                     console.log(data.message);
-                    document.getElementById('petName').innerText = data.message;
+                    let serviceID = localStorage.getItem('selectedServiceID');
+                    setProgress(serviceID);
                 } else {
                     logout();
                 }
